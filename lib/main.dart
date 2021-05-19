@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:pulizia_strade/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OverlaySupport(
       child: MaterialApp(
-        title: title,
         theme: ThemeData(
             primarySwatch: Colors.blue,
             scaffoldBackgroundColor: Colors.white,

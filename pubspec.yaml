@@ -27,6 +27,7 @@ dependencies:
   flappy_search_bar: ^1.4.1
   line_icons: ^0.2.0
   google_nav_bar: ^5.0.0
+  overlay_support: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
