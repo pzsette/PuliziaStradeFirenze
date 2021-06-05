@@ -7,7 +7,6 @@ import 'Screens/Favourite.dart';
 import 'Screens/Settings.dart';
 
 class Home extends StatefulWidget {
-  //Serve ad identificare lo specifico widget aka id di html
   Home({Key key}) : super(key: key);
 
   final String title = "Pulizia Strade";
@@ -18,7 +17,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  //static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   bool pageToggle = false;
 
   @override
