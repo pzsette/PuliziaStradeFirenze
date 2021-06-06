@@ -29,6 +29,7 @@ dependencies:
   google_nav_bar: ^5.0.0
   overlay_support: ^1.0.0
   google_maps_flutter: ^0.5.21
+  geolocator: ^5.1.1
   location: ^4.1.1
 
 
