@@ -1,6 +1,6 @@
-import 'package:firenze_pulizia_strade/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
+import 'package:pulizia_strade/Utils/utils.dart';
 
 class DateLabel extends StatelessWidget {
   final PositionInMap position;

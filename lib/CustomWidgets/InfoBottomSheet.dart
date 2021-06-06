@@ -1,14 +1,9 @@
 import 'dart:ui';
-import 'package:firenze_pulizia_strade/CustomWidgets/Buttons/ParkButton.dart';
-import 'package:firenze_pulizia_strade/CustomWidgets/Labels/DateLabel.dart';
-import 'package:firenze_pulizia_strade/CustomWidgets/Labels/PositionLabel.dart';
-import 'package:firenze_pulizia_strade/Network/dioNetwork.dart';
-import 'package:firenze_pulizia_strade/Repository/favourites_db.dart';
-import 'package:firenze_pulizia_strade/models/PositionInMap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:firenze_pulizia_strade/CustomWidgets/Buttons/FavouriteButton.dart';
-import '../Network/locationNetwork.dart';
+import 'package:pulizia_strade/CustomWidgets/Labels/DateLabel.dart';
+import 'package:pulizia_strade/CustomWidgets/Labels/PositionLabel.dart';
+import 'package:pulizia_strade/Models/PositionInMap.dart';
 
 class InfoBottomSheet extends StatefulWidget {
   final PositionInMap position;

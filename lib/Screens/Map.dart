@@ -2,6 +2,7 @@ import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pulizia_strade/Alerts/SnackbarBuilder.dart';
+import 'package:pulizia_strade/CustomWidgets/InfoBottomSheet.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
