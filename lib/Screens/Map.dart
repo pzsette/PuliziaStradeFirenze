@@ -1,6 +1,8 @@
 import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pulizia_strade/Models/PositionInMap.dart';
+import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
 
 class MapScreen extends StatefulWidget {
@@ -9,6 +11,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  bool _isButtonTapped = false;
   bool mapToggle = false;
   GoogleMapController mapController;
   var currentLocation;
@@ -29,26 +32,26 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Stack(
-      children: [
-        mapToggle
-            ? GoogleMap(
-                mapType: MapType.normal,
-                //markers: parkProvider.markers,
-                onMapCreated: _onMapCreated,
-                myLocationEnabled: true,
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(
-                      currentLocation.latitude, currentLocation.longitude),
-                  zoom: 17,
+      body: Stack(
+        children: [
+          mapToggle
+              ? GoogleMap(
+                  mapType: MapType.normal,
+                  //markers: parkProvider.markers,
+                  onMapCreated: _onMapCreated,
+                  myLocationEnabled: true,
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                        currentLocation.latitude, currentLocation.longitude),
+                    zoom: 17,
+                  ),
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
                 ),
-              )
-            : Center(
-                child: CircularProgressIndicator(),
-              ),
-      ],
-    )
-    floatingActionButton: fabShown
+        ],
+      ),
+      floatingActionButton: fabShown
           ? FloatingActionButton(
               backgroundColor: Colors.blue[400],
               onPressed: () async {
