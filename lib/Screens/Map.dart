@@ -12,6 +12,7 @@ class _MapScreenState extends State<MapScreen> {
   bool mapToggle = false;
   GoogleMapController mapController;
   var currentLocation;
+  bool fabShown = true;
 
   @override
   void initState() {
@@ -46,7 +47,41 @@ class _MapScreenState extends State<MapScreen> {
                 child: CircularProgressIndicator(),
               ),
       ],
-    ));
+    )
+    floatingActionButton: fabShown
+          ? FloatingActionButton(
+              backgroundColor: Colors.blue[400],
+              onPressed: () async {
+                if (!_isButtonTapped) {
+                  _isButtonTapped = true;
+                  PositionInMap positionInMap;
+                  List<double> coordinates = await getCoordinates();
+                  try {
+                    positionInMap =
+                        await getPosition(coordinates[0], coordinates[1]);
+                  } on Exception catch (e) {
+                    print(e.toString());
+                    setState(() {
+                      fabShown = false;
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackbarBuilder.build(
+                            "Impossibile caricare informazioni posizione",
+                            Colors.grey));
+                    positionInMap = null;
+                    setState(() {
+                      fabShown = true;
+                    });
+                  }
+                  await _prepareForBottomSheet(positionInMap, coordinates);
+                  _isButtonTapped = false;
+                }
+              },
+              tooltip: 'Get Info',
+              child: Icon(Icons.pin_drop_sharp))
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 
   void _onMapCreated(GoogleMapController controller) async {
