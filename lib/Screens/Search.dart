@@ -2,6 +2,7 @@ import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
+import 'package:pulizia_strade/Screens/NoInternet.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -76,4 +77,30 @@ class _SearchScreenState extends State<SearchScreen> {
       }
       return Center(child: CircularProgressIndicator());
     });
+  }
+
+  _scrollListener() {
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
+
+  void getAllTracts() async {
+    try {
+      Map response = await dio.getAllStreetsAndTracts(context);
+      List<PositionInMap> tmpList = [];
+      for (int i = 0; i < response['strade'].length; i++) {
+        String streetName = response['strade'][i][0];
+        String section = response['strade'][i][1];
+        PositionInMap position =
+            new PositionInMap(streetName, "Florence", section: section);
+        tmpList.add(position);
+      }
+      setState(() {
+        streetList = tmpList;
+      });
+    } on Exception {
+      setState(() {
+        streetList = List.empty();
+      });
+    }
+  }
 }
