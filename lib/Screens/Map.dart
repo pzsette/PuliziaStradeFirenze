@@ -1,6 +1,7 @@
 import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pulizia_strade/Alerts/SnackbarBuilder.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
@@ -85,6 +86,27 @@ class _MapScreenState extends State<MapScreen> {
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  _prepareForBottomSheet(
+      PositionInMap positionInMap, List<double> coordinates) async {
+    try {
+      List<String> tracts = await dio.getTracts(positionInMap.streetName);
+      String selectedTract;
+      if (tracts.length > 1) {
+        selectedTract = await _askUser(context, tracts);
+        if (selectedTract == null) return;
+      } else if (tracts.length == 1) {
+        selectedTract = tracts[0];
+      } else {
+        selectedTract = null;
+      }
+      _showModalBottomSheet(context, positionInMap, coordinates[0],
+          coordinates[1], selectedTract);
+    } on Exception {
+      ScaffoldMessenger.of(context).showSnackBar(SnackbarBuilder.build(
+          "Impossibile connettersi al server", Colors.red));
+    }
   }
 
   void _onMapCreated(GoogleMapController controller) async {
