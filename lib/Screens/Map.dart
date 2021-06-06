@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,18 +9,15 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  bool mapToggle = false;
   GoogleMapController mapController;
   var currentLocation;
-  bool mapToggle = false;
-  final LatLng _center = const LatLng(45.521563, -122.677433);
 
   @override
   void initState() {
     super.initState();
-    mapToggle = true;
     Location().getLocation().then((currloc) {
       setState(() {
-        print("LOL2");
         currentLocation = currloc;
         mapToggle = true;
       });
@@ -42,14 +37,10 @@ class _MapScreenState extends State<MapScreen> {
                 onMapCreated: _onMapCreated,
                 myLocationEnabled: true,
                 initialCameraPosition: CameraPosition(
-                  target: _center,
-                  zoom: 15.0,
-                ),
-                /*initialCameraPosition: CameraPosition(
                   target: LatLng(
                       currentLocation.latitude, currentLocation.longitude),
                   zoom: 17,
-                ),*/
+                ),
               )
             : Center(
                 child: CircularProgressIndicator(),
