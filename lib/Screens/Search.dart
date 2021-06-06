@@ -103,4 +103,14 @@ class _SearchScreenState extends State<SearchScreen> {
       });
     }
   }
+
+  void _showDialog(PositionInMap position) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return Container(height: 500, child: PositionCard(position));
+      },
+    );
+  }
 }
