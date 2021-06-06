@@ -13,6 +13,8 @@ class MapScreen extends StatefulWidget {
   _MapScreenState createState() => _MapScreenState();
 }
 
+enum DONE { YES, NO }
+
 class _MapScreenState extends State<MapScreen> {
   bool _isButtonTapped = false;
   bool mapToggle = false;
@@ -100,6 +102,32 @@ class _MapScreenState extends State<MapScreen> {
           position.addSection(tract);
           return new InfoBottomSheet(position, latitude, longitude);
         });
+  }
+
+  _askUser(context, List<String> tracts) async {
+    String tractSelected = '';
+    switch (await showDialog(
+        context: context,
+        builder: (_) => SimpleDialog(
+              title: new Text('Seleziona il tratto in cui ti trovi'),
+              children: <Widget>[
+                for (var tract in tracts)
+                  new SimpleDialogOption(
+                    child: new Text(tract),
+                    onPressed: () {
+                      tractSelected = tract;
+                      Navigator.pop(context, DONE.YES);
+                    },
+                  ),
+              ],
+            ))) {
+      case DONE.YES:
+        return tractSelected;
+        break;
+      case DONE.NO:
+        throw new Exception("Error");
+        break;
+    }
   }
 
   _prepareForBottomSheet(
