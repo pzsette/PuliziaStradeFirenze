@@ -104,6 +104,16 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
+  Future<List<PositionInMap>> search(String search) async {
+    List<PositionInMap> searchResult = [];
+    streetList.forEach((element) {
+      if (element.streetName.contains(search.toUpperCase())) {
+        searchResult.add(element);
+      }
+    });
+    return searchResult;
+  }
+
   void _showDialog(PositionInMap position) {
     showDialog(
       context: context,
