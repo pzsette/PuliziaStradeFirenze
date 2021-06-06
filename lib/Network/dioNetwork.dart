@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 
 class DioNetwork {
   final Dio dio = new Dio();
+  static const String baseURL = 'https://niksimoni.pythonanywhere.com/api';
 
   Future<Map> getParkingInfoOnPosition(PositionInMap position) async {
     try {
@@ -23,14 +24,12 @@ class DioNetwork {
           '&tratto=' +
           position.section.toUpperCase();
     }
-    String baseURL = 'http://niksimoni.pythonanywhere.com/api';
     return baseURL + url;
   }
 
   Future<Map> getAllStreetsAndTracts(ctx) async {
     try {
-      final response = await dio.get(
-          'http://niksimoni.pythonanywhere.com/api/all_streets_and_tracts');
+      final response = await dio.get(baseURL + '/all_streets_and_tracts');
       return response.data;
     } on DioError {
       throw Failure("Error retrieving streets and tracs");
@@ -40,8 +39,8 @@ class DioNetwork {
   Future<List<String>> getTracts(street) async {
     try {
       List<String> tracts = [];
-      Response response = await dio.get(
-          'http://niksimoni.pythonanywhere.com/api/tratti_strada?indirizzo=${street.toUpperCase()}');
+      Response response = await dio
+          .get(baseURL + '/tratti_strada?indirizzo=${street.toUpperCase()}');
       for (var i in response.data['tratti']) {
         tracts.add(i);
       }

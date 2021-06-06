@@ -20,7 +20,7 @@ class _MapScreenState extends State<MapScreen> {
   bool mapToggle = false;
   GoogleMapController mapController;
   var currentLocation;
-  bool fabShown = true;
+  bool fabShown = false;
 
   final DioNetwork dio = new DioNetwork();
 
@@ -31,6 +31,7 @@ class _MapScreenState extends State<MapScreen> {
       setState(() {
         currentLocation = currloc;
         mapToggle = true;
+        fabShown = true;
       });
     });
   }
