@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pulizia_strade/Alerts/SnackbarBuilder.dart';
 import 'package:pulizia_strade/CustomWidgets/InfoBottomSheet.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
+import 'package:pulizia_strade/Network/dioNetwork.dart';
 import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
 
@@ -18,6 +19,8 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController mapController;
   var currentLocation;
   bool fabShown = true;
+
+  final DioNetwork dio = new DioNetwork();
 
   @override
   void initState() {
