@@ -88,6 +88,16 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
+  _showModalBottomSheet(context, PositionInMap position, double latitude,
+      double longitude, String tract) async {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          position.addSection(tract);
+          return new InfoBottomSheet(position, latitude, longitude);
+        });
+  }
+
   _prepareForBottomSheet(
       PositionInMap positionInMap, List<double> coordinates) async {
     try {
