@@ -1,6 +1,7 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:pulizia_strade/CustomWidgets/PositionCard.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
 import 'package:pulizia_strade/Providers/ConnectivityProvider.dart';
@@ -22,6 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     this.getAllTracts();
     listScrollController.addListener(_scrollListener);
+    Provider.of<ConnectivityProvider>(context, listen: false).startMonitoring();
   }
 
   Widget build(BuildContext context) {
@@ -89,6 +91,7 @@ class _SearchScreenState extends State<SearchScreen> {
     try {
       Map response = await dio.getAllStreetsAndTracts(context);
       List<PositionInMap> tmpList = [];
+      print("ELlo");
       for (int i = 0; i < response['strade'].length; i++) {
         String streetName = response['strade'][i][0];
         String section = response['strade'][i][1];
@@ -97,6 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
         tmpList.add(position);
       }
       setState(() {
+        print("ELOEEL");
         streetList = tmpList;
       });
     } on Exception {
