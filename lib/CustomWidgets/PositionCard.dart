@@ -4,7 +4,7 @@ import 'package:pulizia_strade/CustomWidgets/Labels/DateLabel.dart';
 import 'package:pulizia_strade/CustomWidgets/Labels/PositionLabel.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
-import 'package:pulizia_strade/Repository/repository_db.dart';
+import 'package:pulizia_strade/Repository/favourites_db.dart';
 
 class PositionCard extends StatelessWidget {
   final PositionInMap position;
