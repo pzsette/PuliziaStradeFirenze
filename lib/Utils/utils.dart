@@ -1,5 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:pulizia_strade/Models/SettingsValues.dart';
 
 convertDate(String date) {
   List<String> splitted = date.split("-");
@@ -57,4 +58,39 @@ Future<String> getJsonFile(String path) async {
 
 void setMapStyle(String mapStyle, GoogleMapController mapController) {
   mapController.setMapStyle(mapStyle);
+}
+
+String convertNotificationTimeValueToString(NotificationTimeOptions value) {
+  if (value == NotificationTimeOptions.one_day) {
+    return "1 giorno prima";
+  } else if (value == NotificationTimeOptions.twelve_hours) {
+    return "12 ore prima";
+  } else if (value == NotificationTimeOptions.six_hours) {
+    return "6 ore prima";
+  } else {
+    return "2 ore prima";
+  }
+}
+
+NotificationTimeOptions convertStringToNotificationTimeVlaue(String value) {
+  switch (value) {
+    case "NotificationTimeOptions.one_day":
+      return NotificationTimeOptions.one_day;
+      break;
+
+    case "NotificationTimeOptions.twelve_hours":
+      return NotificationTimeOptions.twelve_hours;
+      break;
+
+    case "NotificationTimeOptions.six_hours":
+      return NotificationTimeOptions.six_hours;
+      break;
+
+    case "NotificationTimeOptions.two_hours":
+      return NotificationTimeOptions.two_hours;
+      break;
+
+    default:
+      return NotificationTimeOptions.one_day;
+  }
 }
