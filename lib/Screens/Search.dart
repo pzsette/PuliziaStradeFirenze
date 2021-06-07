@@ -1,7 +1,9 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
+import 'package:pulizia_strade/Providers/ConnectivityProvider.dart';
 import 'package:pulizia_strade/Screens/NoInternet.dart';
 
 class SearchScreen extends StatefulWidget {
