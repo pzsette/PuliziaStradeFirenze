@@ -1,12 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pulizia_strade/Models/SettingsValues.dart';
+import 'package:pulizia_strade/Providers/SettingsProvider.dart';
+import 'package:pulizia_strade/Utils/utils.dart';
+import 'package:pulizia_strade/Utils/NavigationUtils.dart';
+import 'package:settings_ui/settings_ui.dart';
 
-class Settings extends StatefulWidget {
+class SettingsScreen extends StatefulWidget {
   @override
   _SettingsState createState() => _SettingsState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsState extends State<SettingsScreen> {
   final TextStyle defaultStyle = TextStyle(color: Colors.black, fontSize: 14.0);
   final TextStyle linkStyle = TextStyle(color: Colors.blue, fontSize: 14.0);
 
@@ -66,11 +72,11 @@ class _SettingsState extends State<Settings> {
                           text:
                               "Se riscontri dei problemi nell'utilizzo dell'app, puoi contattarci all'indirizzo email: "),
                       TextSpan(
-                          text: "np.devsquad@gmail.com",
+                          text: "pietrozarri96@gmail.com",
                           style: linkStyle,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              launchUrl('mailto:np.devsquad@gmail.com');
+                              launchUrl('mailto:pietrozarri96@gmail.com');
                             }),
                     ], style: TextStyle(fontSize: 15))),
                 SizedBox(height: 20),
