@@ -1,6 +1,6 @@
 import 'package:pulizia_strade/Models/SettingsValues.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceManager {
   static SharedPreferences _sharedPrefs;

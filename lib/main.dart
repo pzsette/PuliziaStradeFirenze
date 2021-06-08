@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Providers/ConnectivityProvider.dart';
+import 'package:pulizia_strade/Providers/SettingsProvider.dart';
+import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/home.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await sharedPrefs.init();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
+        ChangeNotifierProvider<SettingsProvider>(
+            create: (context) => SettingsProvider()),
       ],
       child: MyApp(),
     ),
