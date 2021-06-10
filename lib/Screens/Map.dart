@@ -1,11 +1,13 @@
 import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Alerts/SnackbarBuilder.dart';
 import 'package:pulizia_strade/CustomWidgets/Buttons/CircularButton.dart';
 import 'package:pulizia_strade/CustomWidgets/InfoBottomSheet.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
+import 'package:pulizia_strade/Providers/ParkProvider.dart';
 import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
@@ -40,6 +42,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ParkProvider parkProvider = Provider.of<ParkProvider>(context);
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
