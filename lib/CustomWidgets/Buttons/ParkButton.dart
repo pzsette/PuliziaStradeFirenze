@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
+import 'package:pulizia_strade/Providers/ParkProvider.dart';
 
 class ParkButton extends StatelessWidget {
   final PositionInMap position;
@@ -14,6 +16,7 @@ class ParkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ParkProvider parkProvider = Provider.of<ParkProvider>(context);
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
         child: ElevatedButton(
@@ -23,7 +26,10 @@ class ParkButton extends StatelessWidget {
                     RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25.0),
                 ))),
-            onPressed: () async {},
+            onPressed: () async {
+              parkProvider.addPark(
+                  position, latitude, longitude, positionFoundInDb);
+            },
             child: Padding(
                 padding: EdgeInsets.all(screenWidth / 42),
                 child: Text("Parcheggia qui",

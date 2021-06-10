@@ -40,3 +40,6 @@ flutter:
   assets:
     - assets/mapTheme.txt
     - assets/error.gif
+    - assets/parkIcon.png
+    - assets/googleMapsLogo.png
+    - assets/appleMapsLogo.png
