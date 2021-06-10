@@ -10,6 +10,7 @@ import 'package:pulizia_strade/Network/dioNetwork.dart';
 import 'package:pulizia_strade/Providers/ParkProvider.dart';
 import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
+import 'package:pulizia_strade/Utils/NavigationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
 
 class MapScreen extends StatefulWidget {
@@ -28,6 +29,11 @@ class _MapScreenState extends State<MapScreen> {
 
   final DioNetwork dio = new DioNetwork();
 
+  AnimationController animationController;
+  Animation degOneTranslationAnimation,
+      degTwoTranslationAnimation,
+      degThreeTranslationAnimation;
+
   @override
   void initState() {
     super.initState();
@@ -37,6 +43,31 @@ class _MapScreenState extends State<MapScreen> {
         mapToggle = true;
         fabShown = true;
       });
+    });
+
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+    degOneTranslationAnimation = TweenSequence([
+      TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 1.2), weight: 75.0),
+      TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 1.2, end: 1.0), weight: 25.0),
+    ]).animate(animationController);
+    degTwoTranslationAnimation = TweenSequence([
+      TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 1.4), weight: 55.0),
+      TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 1.4, end: 1.0), weight: 45.0),
+    ]).animate(animationController);
+    degThreeTranslationAnimation = TweenSequence([
+      TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 1.75), weight: 35.0),
+      TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 1.75, end: 1.0), weight: 65.0),
+    ]).animate(animationController);
+
+    animationController.addListener(() {
+      setState(() {});
     });
   }
 
@@ -62,7 +93,7 @@ class _MapScreenState extends State<MapScreen> {
               : Center(
                   child: CircularProgressIndicator(),
                 ),
-        Positioned(
+          Positioned(
             left: screenWidth / 42,
             top: screenWidth / 24,
             child: parkProvider.parked
@@ -83,8 +114,7 @@ class _MapScreenState extends State<MapScreen> {
                         icon: Icons.subdirectory_arrow_right,
                         onClick: () {
                           List coords = sharedPrefs.getParkCoords();
-                          NavigatorUtils.openNavigatorTo(
-                              coords[0], coords[1], context);
+                          openNavigatorTo(coords[0], coords[1], context);
                         },
                       ),
                     ),
@@ -132,8 +162,6 @@ class _MapScreenState extends State<MapScreen> {
                   ])
                 : Container(),
           ),
-        ],
-      ),
         ],
       ),
       floatingActionButton: fabShown
