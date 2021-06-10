@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Providers/ConnectivityProvider.dart';
+import 'package:pulizia_strade/Providers/ParkProvider.dart';
 import 'package:pulizia_strade/Providers/SettingsProvider.dart';
 import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/home.dart';
@@ -12,6 +13,8 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<ParkProvider>(
+            create: (context) => ParkProvider(), lazy: false),
         ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
         ChangeNotifierProvider<SettingsProvider>(
             create: (context) => SettingsProvider()),
