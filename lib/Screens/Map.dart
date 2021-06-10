@@ -83,7 +83,7 @@ class _MapScreenState extends State<MapScreen>
           mapToggle
               ? GoogleMap(
                   mapType: MapType.normal,
-                  //markers: parkProvider.markers,
+                  markers: parkProvider.markers,
                   onMapCreated: _onMapCreated,
                   myLocationEnabled: true,
                   initialCameraPosition: CameraPosition(
