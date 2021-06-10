@@ -2,9 +2,11 @@ import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pulizia_strade/Alerts/SnackbarBuilder.dart';
+import 'package:pulizia_strade/CustomWidgets/Buttons/CircularButton.dart';
 import 'package:pulizia_strade/CustomWidgets/InfoBottomSheet.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
+import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/Utils/LoacalizationUtils.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
 
@@ -57,6 +59,78 @@ class _MapScreenState extends State<MapScreen> {
               : Center(
                   child: CircularProgressIndicator(),
                 ),
+        Positioned(
+            left: screenWidth / 42,
+            top: screenWidth / 24,
+            child: parkProvider.parked
+                ? Stack(children: [
+                    IgnorePointer(
+                      child: Container(
+                        height: 150.0,
+                        width: 150.0,
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: Offset.fromDirection(getRadiansFromDegree(0),
+                          7 + degOneTranslationAnimation.value * 90),
+                      child: CircularButtom(
+                        color: Colors.green,
+                        size: screenWidth / 11,
+                        padding: 6,
+                        icon: Icons.subdirectory_arrow_right,
+                        onClick: () {
+                          List coords = sharedPrefs.getParkCoords();
+                          NavigatorUtils.openNavigatorTo(
+                              coords[0], coords[1], context);
+                        },
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: Offset.fromDirection(getRadiansFromDegree(42),
+                          7 + degOneTranslationAnimation.value * 90),
+                      child: CircularButtom(
+                        color: Colors.deepPurple,
+                        size: screenWidth / 11,
+                        padding: 6,
+                        icon: Icons.center_focus_strong_rounded,
+                        onClick: () {
+                          List coords = sharedPrefs.getParkCoords();
+                          mapController.moveCamera(CameraUpdate.newLatLng(
+                              LatLng(coords[0], coords[1])));
+                        },
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: Offset.fromDirection(getRadiansFromDegree(85),
+                          7 + degOneTranslationAnimation.value * 90),
+                      child: CircularButtom(
+                          color: Colors.red[400],
+                          size: screenWidth / 11,
+                          padding: 6,
+                          icon: Icons.delete,
+                          onClick: () {
+                            parkProvider.removePark();
+                          }),
+                    ),
+                    CircularButtom(
+                      color: Colors.white,
+                      backgroundColor: Colors.blue[400],
+                      padding: 8,
+                      size: screenWidth / 8,
+                      icon: Icons.local_parking,
+                      onClick: () {
+                        if (animationController.isCompleted) {
+                          animationController.reverse();
+                        } else {
+                          animationController.forward();
+                        }
+                      },
+                    ),
+                  ])
+                : Container(),
+          ),
+        ],
+      ),
         ],
       ),
       floatingActionButton: fabShown
