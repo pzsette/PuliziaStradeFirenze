@@ -20,7 +20,8 @@ class MapScreen extends StatefulWidget {
 
 enum DONE { YES, NO }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreenState extends State<MapScreen>
+    with SingleTickerProviderStateMixin {
   bool _isButtonTapped = false;
   bool mapToggle = false;
   GoogleMapController mapController;
@@ -37,6 +38,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
+
     Location().getLocation().then((currloc) {
       setState(() {
         currentLocation = currloc;
