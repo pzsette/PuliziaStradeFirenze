@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:pulizia_strade/Alerts/CustomAlerts.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Providers/ParkProvider.dart';
 
@@ -27,6 +28,9 @@ class ParkButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25.0),
                 ))),
             onPressed: () async {
+              if (!positionFoundInDb) {
+                await showAlertDialog(context, Text(alertMessage));
+              }
               parkProvider.addPark(
                   position, latitude, longitude, positionFoundInDb);
             },

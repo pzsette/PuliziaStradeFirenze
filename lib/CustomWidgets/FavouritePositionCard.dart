@@ -89,9 +89,9 @@ class _PositionWidgetState extends State<FavouritePositionCard> {
                                   ),
                                   onPressed: () {
                                     provider.deletePosition(widget.position);
-                                    fireMessaging.removeFavourites(
-                                        widget.position.streetName,
-                                        widget.position.section);
+                                    //fireMessaging.removeFavourites(
+                                    //widget.position.streetName,
+                                    //widget.position.section);
                                   },
                                   child: Padding(
                                       padding: EdgeInsets.all(7),
