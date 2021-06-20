@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
 Future<void> openNavigatorTo(double latitude, double longitude, context) async {
   if (Platform.isIOS) {
@@ -20,11 +20,12 @@ Future<void> openNavigatorTo(double latitude, double longitude, context) async {
 }
 
 launchUrl(String url) async {
-  if (await canLaunch(url)) {
+  print("Launching:" + url.toString());
+  /*if (await canLaunch(url)) {
     await launch(url);
   } else {
     throw 'Could not launch $url';
-  }
+  }*/
 }
 
 CupertinoActionSheet directionSheet(
@@ -55,7 +56,7 @@ CupertinoActionSheet directionSheet(
                 '&dirflg=w');
             print(url);
             Navigator.pop(context);
-            launch(url);
+            //launch(url);
           },
         ),
         CupertinoActionSheetAction(

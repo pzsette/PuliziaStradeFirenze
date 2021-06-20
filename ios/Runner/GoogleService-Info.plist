@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>564927063699-c5r4su9t0kt0e7ne61l8v9s817q4ohqa.apps.googleusercontent.com</string>
+	<string>1040411968807-tflj449qtrs40ojjpe7vap4l9qo956nq.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.564927063699-c5r4su9t0kt0e7ne61l8v9s817q4ohqa</string>
+	<string>com.googleusercontent.apps.1040411968807-tflj449qtrs40ojjpe7vap4l9qo956nq</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBbG52mepDul_cA1uEPTAdK7pKmpBbyGVg</string>
+	<string>AIzaSyCrxe3cAfOv-wdgsnlLr5rghTQz_lR1CCQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>564927063699</string>
+	<string>1040411968807</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.puliziaStrade</string>
+	<string>com.pietrozarri.puliziaStrade</string>
 	<key>PROJECT_ID</key>
-	<string>puliziastrade-29724</string>
+	<string>pulizia-strade-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>puliziastrade-29724.appspot.com</string>
+	<string>pulizia-strade-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:564927063699:ios:01b1220630a514385b8f66</string>
+	<string>1:1040411968807:ios:59b35b1ee7d583e8ae9502</string>
 </dict>
 </plist>
