@@ -170,10 +170,14 @@ class _MapScreenState extends State<MapScreen>
           ? FloatingActionButton(
               backgroundColor: Colors.blue[400],
               onPressed: () async {
+                print("Premuto");
                 if (!_isButtonTapped) {
+                  print("premuto2");
                   _isButtonTapped = true;
                   PositionInMap positionInMap;
                   List<double> coordinates = await getCoordinates();
+
+                  print("Coords:" + coordinates.toString());
                   try {
                     positionInMap =
                         await getPosition(coordinates[0], coordinates[1]);

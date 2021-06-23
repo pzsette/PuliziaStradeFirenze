@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Providers/ConnectivityProvider.dart';
+import 'package:pulizia_strade/Providers/DataProvider.dart';
 import 'package:pulizia_strade/Providers/ParkProvider.dart';
 import 'package:pulizia_strade/Providers/SettingsProvider.dart';
+import 'package:pulizia_strade/Repository/favourites_db.dart';
 import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/home.dart';
 import 'dart:io' show Platform;
@@ -19,6 +21,8 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<DataProvider>(
+            create: (context) => DataProvider(DBHelper.instance), lazy: false),
         ChangeNotifierProvider<ParkProvider>(
             create: (context) => ParkProvider(), lazy: false),
         ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
