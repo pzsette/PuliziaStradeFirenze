@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Screens/Map.dart';
 import 'package:pulizia_strade/Screens/Search.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'Providers/ConnectivityProvider.dart';
 import 'Screens/Favourite.dart';
 import 'Screens/Settings.dart';
 
@@ -22,7 +24,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    //Provider.of<ConnectivityProvider>(context, listen: false).startMonitoring();
+    Provider.of<ConnectivityProvider>(context, listen: false).startMonitoring();
   }
 
   static List<Widget> _widgetOptions = <Widget>[

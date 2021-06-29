@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-//import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Future<void> openNavigatorTo(double latitude, double longitude, context) async {
   if (Platform.isIOS) {
     showCupertinoModalPopup(
         context: context,
         builder: (context) => directionSheet(latitude, longitude, context));
-    //url= 'https://maps.apple.com/?q=$latitude,$longitude';
+    //String url= 'https://maps.apple.com/?q=$latitude,$longitude';
   } else {
     String url = Uri.encodeFull(
         'https://www.google.com/maps/dir/?api=1&destination=' +
@@ -20,12 +20,12 @@ Future<void> openNavigatorTo(double latitude, double longitude, context) async {
 }
 
 launchUrl(String url) async {
-  print("Launching:" + url.toString());
-  /*if (await canLaunch(url)) {
+  //print("Launching:" + url.toString());
+  if (await canLaunch(url)) {
     await launch(url);
   } else {
     throw 'Could not launch $url';
-  }*/
+  }
 }
 
 CupertinoActionSheet directionSheet(
@@ -56,7 +56,7 @@ CupertinoActionSheet directionSheet(
                 '&dirflg=w');
             print(url);
             Navigator.pop(context);
-            //launch(url);
+            launch(url);
           },
         ),
         CupertinoActionSheetAction(

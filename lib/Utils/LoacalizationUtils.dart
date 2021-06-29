@@ -3,15 +3,13 @@ import 'package:location/location.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 
 Future<List<double>> getCoordinates() async {
-  /*print("DEntrooo");
+  print("DEntrooo");
   LocationData locationData;
   Location location = new Location();
   locationData = await location.getLocation();
-  print("WENJENEI");
   double lat = locationData.latitude;
   double long = locationData.longitude;
-  return [lat, long];*/
-  return [43.783155, 11.241620];
+  return [lat, long];
 }
 
 Future<PositionInMap> getPosition(double latitude, double longitude) async {
