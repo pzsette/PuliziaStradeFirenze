@@ -28,7 +28,8 @@ class _NotificationButton extends State<NotificationButton> {
     double screenWidth = MediaQuery.of(context).size.width;
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          side: BorderSide(width: 2.0, color: Colors.grey),
+          side: BorderSide(
+              width: 2.0, color: notificationOn ? Colors.green : Colors.grey),
           shape: CircleBorder(),
           primary: Colors.white,
         ),
@@ -59,7 +60,7 @@ class _NotificationButton extends State<NotificationButton> {
                   ? Icons.notifications_active
                   : Icons.notifications_off,
               size: screenWidth / 13,
-              color: Colors.grey,
+              color: notificationOn ? Colors.green : Colors.grey,
             )));
   }
 }

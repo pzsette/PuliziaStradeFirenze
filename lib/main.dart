@@ -10,7 +10,6 @@ import 'package:pulizia_strade/Providers/SettingsProvider.dart';
 import 'package:pulizia_strade/Repository/favourites_db.dart';
 import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/home.dart';
-import 'dart:io' show Platform;
 
 import 'CustomWidgets/NotificationBadge.dart';
 import 'Models/PushNotification.dart';
@@ -70,7 +69,6 @@ class _MyAppState extends State<MyApp> {
     // 1. Initialize the Firebase app
     await Firebase.initializeApp();
 
-    print("ehiehei");
     // 2. Instantiate Firebase Messaging
     _firebaseMessaging = FirebaseMessaging.instance;
 

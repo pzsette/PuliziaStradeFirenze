@@ -1,4 +1,3 @@
-import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -38,9 +37,7 @@ class _MapScreenState extends State<MapScreen>
   @override
   void initState() {
     super.initState();
-    print("bella li");
-    Location().getLocation().then((currloc) {
-      print("Getto loc");
+    determinePosition().then((currloc) {
       setState(() {
         currentLocation = currloc;
         mapToggle = true;
@@ -88,8 +85,7 @@ class _MapScreenState extends State<MapScreen>
                   onMapCreated: _onMapCreated,
                   myLocationEnabled: true,
                   initialCameraPosition: CameraPosition(
-                    target: LatLng(
-                        currentLocation.latitude, currentLocation.longitude),
+                    target: LatLng(currentLocation[0], currentLocation[1]),
                     zoom: 17,
                   ),
                 )
@@ -174,7 +170,7 @@ class _MapScreenState extends State<MapScreen>
                 if (!_isButtonTapped) {
                   _isButtonTapped = true;
                   PositionInMap positionInMap;
-                  List<double> coordinates = await getCoordinates();
+                  List<double> coordinates = await determinePosition();
                   try {
                     positionInMap =
                         await getPosition(coordinates[0], coordinates[1]);
