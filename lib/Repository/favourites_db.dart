@@ -101,8 +101,7 @@ class DBHelper {
       String street = i["street"];
       String section = i["section"];
       String city = i["city"];
-      PositionInMap position =
-          new PositionInMap(street, city, section: section);
+      PositionInMap position = new PositionInMap(street, city, section);
       list.add(position);
     }
     return list;

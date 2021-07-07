@@ -95,7 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
         String streetName = response['strade'][i][0];
         String section = response['strade'][i][1];
         PositionInMap position =
-            new PositionInMap(streetName, "Florence", section: section);
+            new PositionInMap(streetName, "Florence", section);
         tmpList.add(position);
       }
       setState(() {

@@ -1,6 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:pulizia_strade/Models/PositionInMap.dart';
+import 'package:pulizia_strade/Models/PositionFromGetPosition.dart';
 
 Future<List<double>> determinePosition() async {
   bool serviceEnabled;
@@ -42,7 +42,8 @@ Future<List<double>> determinePosition() async {
   return [lat, long];
 }
 
-Future<PositionInMap> getPosition(double latitude, double longitude) async {
+Future<PositionFromGetPosition> getPosition(
+    double latitude, double longitude) async {
   //double lat = 43.780750;
   //double long = 11.244067;
   List<Placemark> placemark =
@@ -55,6 +56,6 @@ Future<PositionInMap> getPosition(double latitude, double longitude) async {
   //List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(43.760439,11.293287); // via fez
   String city = placemark[0].locality;
   String address = placemark[0].thoroughfare.toUpperCase();
-  PositionInMap position = new PositionInMap(address, city);
+  PositionFromGetPosition position = new PositionFromGetPosition(address, city);
   return position;
 }

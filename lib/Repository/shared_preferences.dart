@@ -62,9 +62,13 @@ class SharedPreferenceManager {
     return _sharedPrefs.getString(parkStreetSection);
   }
 
-  PositionInMap getParkPosition() => PositionInMap(
-      _sharedPrefs.getString(parkSteetName),
-      _sharedPrefs.getString(parkCityName));
+  PositionInMap getParkPosition() {
+    PositionInMap pos = new PositionInMap(
+        _sharedPrefs.getString(parkSteetName),
+        _sharedPrefs.getString(parkCityName),
+        _sharedPrefs.getString(parkStreetSection));
+    return pos;
+  }
 
   NotificationTimeOptions getNotificationTimeOption() {
     return convertStringToNotificationTimeVlaue(

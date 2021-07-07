@@ -3,7 +3,7 @@ class PositionInMap {
   String section;
   String city;
 
-  PositionInMap(this.streetName, this.city, {this.section});
+  PositionInMap(this.streetName, this.city, this.section);
 
   void addSection(String section) {
     this.section = section;
@@ -14,7 +14,7 @@ class PositionInMap {
     return ("streetName: " +
         streetName +
         ", section: " +
-        section +
+        section.toString() +
         ", city: " +
         city);
   }

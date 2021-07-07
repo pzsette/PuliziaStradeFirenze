@@ -5,6 +5,7 @@ import 'package:pulizia_strade/Alerts/SnackbarBuilder.dart';
 import 'package:pulizia_strade/CustomWidgets/Buttons/InfoButton.dart';
 import 'package:pulizia_strade/CustomWidgets/InfoBottomSheet.dart';
 import 'package:pulizia_strade/CustomWidgets/ParkButtonBuilder.dart';
+import 'package:pulizia_strade/Models/PositionFromGetPosition.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
 import 'package:pulizia_strade/Providers/ParkProvider.dart';
@@ -68,10 +69,10 @@ class _MapScreenState extends State<MapScreen>
               onClick: () async {
                 if (!_isButtonTapped) {
                   _isButtonTapped = true;
-                  PositionInMap positionInMap;
+                  PositionFromGetPosition positionFromGet;
                   List<double> coordinates = await determinePosition();
                   try {
-                    positionInMap =
+                    positionFromGet =
                         await getPosition(coordinates[0], coordinates[1]);
                   } on Exception catch (e) {
                     print(e.toString());
@@ -82,12 +83,12 @@ class _MapScreenState extends State<MapScreen>
                         SnackbarBuilder.build(
                             "Impossibile caricare informazioni posizione",
                             Colors.grey));
-                    positionInMap = null;
+                    positionFromGet = null;
                     setState(() {
                       fabShown = true;
                     });
                   }
-                  await _prepareForBottomSheet(positionInMap, coordinates);
+                  await _prepareForBottomSheet(positionFromGet, coordinates);
                   _isButtonTapped = false;
                 }
               },
@@ -138,9 +139,9 @@ class _MapScreenState extends State<MapScreen>
   }
 
   _prepareForBottomSheet(
-      PositionInMap positionInMap, List<double> coordinates) async {
+      PositionFromGetPosition positionFromGet, List<double> coordinates) async {
     try {
-      List<String> tracts = await dio.getTracts(positionInMap.streetName);
+      List<String> tracts = await dio.getTracts(positionFromGet.streetName);
       String selectedTract;
       if (tracts.length > 1) {
         selectedTract = await _askUser(context, tracts);
@@ -148,8 +149,10 @@ class _MapScreenState extends State<MapScreen>
       } else if (tracts.length == 1) {
         selectedTract = tracts[0];
       } else {
-        selectedTract = null;
+        selectedTract = 'strada completa';
       }
+      PositionInMap positionInMap = new PositionInMap(
+          positionFromGet.streetName, positionFromGet.city, selectedTract);
       _showModalBottomSheet(context, positionInMap, coordinates[0],
           coordinates[1], selectedTract);
     } on Exception {

@@ -6,6 +6,7 @@ class DioNetwork {
   static const String baseURL = 'https://niksimoni.pythonanywhere.com/api';
 
   Future<Map> getParkingInfoOnPosition(PositionInMap position) async {
+    print("Cerco info su: " + position.toString());
     try {
       Response result = await dio.get(_buildURLForParkingInfo(position));
       return result.data;
@@ -17,13 +18,16 @@ class DioNetwork {
   String _buildURLForParkingInfo(PositionInMap position) {
     String url;
     if (position.section == "strada completa" || position.section == null) {
+      print("entro senza section");
       url = '/data_pulizie?indirizzo=' + position.streetName.toUpperCase();
     } else {
+      print("Entro con section");
       url = '/data_pulizie?indirizzo=' +
           position.streetName.toUpperCase() +
           '&tratto=' +
           position.section.toUpperCase();
     }
+    print("returno " + baseURL + url);
     return baseURL + url;
   }
 
