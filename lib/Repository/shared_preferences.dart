@@ -1,3 +1,4 @@
+import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Models/SettingsValues.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,29 +23,15 @@ class SharedPreferenceManager {
   }
 
   void setParkSteerName(String name) {
-    String addressRevisited = name
-        .toUpperCase()
-        .split(" ")
-        .join("-")
-        .replaceAll("'", "")
-        .replaceAll("(", "")
-        .replaceAll(")", "");
-    _sharedPrefs.setString(parkSteetName, addressRevisited);
+    _sharedPrefs.setString(parkSteetName, name);
   }
 
   void setParkStreetSection(String name) {
-    String tractRevisited = name
-        .toUpperCase()
-        .split(" ")
-        .join("-")
-        .replaceAll("'", "")
-        .replaceAll("(", "")
-        .replaceAll(")", "")
-        .replaceAll("[", "")
-        .replaceAll("]", "")
-        .replaceAll("/", "_")
-        .replaceAll(",", "");
-    _sharedPrefs.setString(parkStreetSection, tractRevisited);
+    _sharedPrefs.setString(parkStreetSection, name);
+  }
+
+  void setParkCityName(String cityName) {
+    _sharedPrefs.setString(parkCityName, cityName);
   }
 
   void setNotificationTimeOption(NotificationTimeOptions value) {
@@ -75,6 +62,10 @@ class SharedPreferenceManager {
     return _sharedPrefs.getString(parkStreetSection);
   }
 
+  PositionInMap getParkPosition() => PositionInMap(
+      _sharedPrefs.getString(parkSteetName),
+      _sharedPrefs.getString(parkCityName));
+
   NotificationTimeOptions getNotificationTimeOption() {
     return convertStringToNotificationTimeVlaue(
         _sharedPrefs.getString(notificationTimeOption));
@@ -87,4 +78,5 @@ const String parkLat = "latitudeOfPark";
 const String parkLong = "longitudeOfPark";
 const String parkSteetName = "parkingStreetName";
 const String parkStreetSection = "parkingStreetSection";
+const String parkCityName = "parkingCityName";
 const String notificationTimeOption = "notTimeOption";

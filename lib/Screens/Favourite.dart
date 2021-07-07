@@ -5,6 +5,7 @@ import 'package:pulizia_strade/CustomWidgets/FavouritePositionCard.dart';
 import 'package:pulizia_strade/Providers/ConnectivityProvider.dart';
 import 'package:pulizia_strade/Providers/DataProvider.dart';
 import 'package:pulizia_strade/Screens/NoInternet.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class FavouriteScreen extends StatefulWidget {
   @override
@@ -22,7 +23,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Consumer2<ConnectivityProvider, DataProvider>(
         builder: (context, connModel, dataModel, child) {
       if (connModel.isConnected != null) {
@@ -35,7 +35,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         style: TextStyle(
                             color: Colors.blue[400],
                             fontWeight: FontWeight.bold,
-                            fontSize: screenWidth / 23),
+                            fontSize: SizeConfig.blockSizeVertical * 2),
                       ))
                     : ListView.builder(
                         itemCount: dataModel.items.length,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/FireMessaging.dart';
 import 'package:pulizia_strade/Repository/favourites_db.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class NotificationButton extends StatefulWidget {
   final PositionInMap position;
@@ -25,7 +26,6 @@ class _NotificationButton extends State<NotificationButton> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(
@@ -59,7 +59,7 @@ class _NotificationButton extends State<NotificationButton> {
               notificationOn
                   ? Icons.notifications_active
                   : Icons.notifications_off,
-              size: screenWidth / 13,
+              size: SizeConfig.blockSizeVertical * 4,
               color: notificationOn ? Colors.green : Colors.grey,
             )));
   }

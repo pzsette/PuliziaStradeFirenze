@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Models/SettingsValues.dart';
 import 'package:pulizia_strade/Providers/SettingsProvider.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 import 'package:pulizia_strade/Utils/utils.dart';
 import 'package:pulizia_strade/Utils/NavigationUtils.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -101,7 +102,6 @@ class NotificationTime extends StatefulWidget {
 class _NotificationTimeState extends State<NotificationTime> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     SettingsProvider settingsPrivider = Provider.of<SettingsProvider>(context);
     NotificationTimeOptions _notTime = settingsPrivider.selectedValue;
     return Scaffold(
@@ -112,7 +112,7 @@ class _NotificationTimeState extends State<NotificationTime> {
         RadioListTile(
           title: Text(
             'Un giorno prima',
-            style: TextStyle(fontSize: screenWidth / 24),
+            style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2),
           ),
           value: NotificationTimeOptions.one_day,
           groupValue: _notTime,
@@ -123,7 +123,7 @@ class _NotificationTimeState extends State<NotificationTime> {
         RadioListTile(
           title: Text(
             '12 ore prima',
-            style: TextStyle(fontSize: screenWidth / 24),
+            style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2),
           ),
           value: NotificationTimeOptions.twelve_hours,
           groupValue: _notTime,
@@ -134,7 +134,7 @@ class _NotificationTimeState extends State<NotificationTime> {
         RadioListTile(
           title: Text(
             '6 ore prima',
-            style: TextStyle(fontSize: screenWidth / 24),
+            style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2),
           ),
           value: NotificationTimeOptions.six_hours,
           groupValue: _notTime,
@@ -145,7 +145,7 @@ class _NotificationTimeState extends State<NotificationTime> {
         RadioListTile(
           title: Text(
             '2 ore prima',
-            style: TextStyle(fontSize: screenWidth / 24),
+            style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2),
           ),
           value: NotificationTimeOptions.two_hours,
           groupValue: _notTime,
