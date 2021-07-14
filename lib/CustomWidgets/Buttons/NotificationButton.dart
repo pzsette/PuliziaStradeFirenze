@@ -19,7 +19,6 @@ class _NotificationButton extends State<NotificationButton> {
 
   @override
   void initState() {
-    print("Initooo" + widget.initNot.toString());
     super.initState();
     notificationOn = widget.initNot;
   }
@@ -34,8 +33,6 @@ class _NotificationButton extends State<NotificationButton> {
           primary: Colors.white,
         ),
         onPressed: () {
-          print("Cambio notifiche");
-          print(!notificationOn);
           DBHelper.instance.updateNot(widget.position, !notificationOn);
           FireMessaging fireMessaging = new FireMessaging();
           if (notificationOn) {
@@ -43,13 +40,11 @@ class _NotificationButton extends State<NotificationButton> {
             fireMessaging.removeFavourites(
                 widget.position.streetName, widget.position.section);
           } else {
-            print("Aggiunto ai preferiti");
             //widget.messaging.subscribeToTopic(address_revisisted + "-" + tract_revisited);
             fireMessaging.addFavourites(
                 widget.position.streetName, widget.position.section);
           }
           setState(() {
-            print("cambio");
             notificationOn = !notificationOn;
           });
         },

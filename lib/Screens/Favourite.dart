@@ -35,7 +35,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         style: TextStyle(
                             color: Colors.blue[400],
                             fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.blockSizeVertical * 2),
+                            fontSize: SizeConfig.blockSizeHorizontal * 4.5),
                       ))
                     : ListView.builder(
                         itemCount: dataModel.items.length,

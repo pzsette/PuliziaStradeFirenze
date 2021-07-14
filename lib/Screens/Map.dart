@@ -47,9 +47,9 @@ class _MapScreenState extends State<MapScreen>
     ParkProvider parkProvider = Provider.of<ParkProvider>(context);
     return Scaffold(
       body: Stack(
-        children: [
-          mapToggle
-              ? GoogleMap(
+        children: mapToggle
+            ? [
+                GoogleMap(
                   mapType: MapType.normal,
                   markers: parkProvider.markers,
                   onMapCreated: _onMapCreated,
@@ -58,43 +58,46 @@ class _MapScreenState extends State<MapScreen>
                     target: LatLng(currentLocation[0], currentLocation[1]),
                     zoom: 17,
                   ),
-                )
-              : Center(
-                  child: CircularProgressIndicator(),
                 ),
-          Positioned(
-            left: SizeConfig.blockSizeHorizontal * 40,
-            bottom: SizeConfig.blockSizeVertical * 2,
-            child: InfoButton(
-              onClick: () async {
-                if (!_isButtonTapped) {
-                  _isButtonTapped = true;
-                  PositionFromGetPosition positionFromGet;
-                  List<double> coordinates = await determinePosition();
-                  try {
-                    positionFromGet =
-                        await getPosition(coordinates[0], coordinates[1]);
-                  } on Exception catch (e) {
-                    print(e.toString());
-                    setState(() {
-                      fabShown = false;
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackbarBuilder.build(
-                            "Impossibile caricare informazioni posizione",
-                            Colors.grey));
-                    positionFromGet = null;
-                    setState(() {
-                      fabShown = true;
-                    });
-                  }
-                  await _prepareForBottomSheet(positionFromGet, coordinates);
-                  _isButtonTapped = false;
-                }
-              },
-            ),
-          ),
-        ],
+                Positioned(
+                  left: SizeConfig.blockSizeHorizontal * 40,
+                  bottom: SizeConfig.blockSizeVertical * 2,
+                  child: InfoButton(
+                    onClick: () async {
+                      if (!_isButtonTapped) {
+                        _isButtonTapped = true;
+                        PositionFromGetPosition positionFromGet;
+                        List<double> coordinates = await determinePosition();
+                        try {
+                          positionFromGet =
+                              await getPosition(coordinates[0], coordinates[1]);
+                        } on Exception catch (e) {
+                          print(e.toString());
+                          setState(() {
+                            fabShown = false;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackbarBuilder.build(
+                                  "Impossibile caricare informazioni posizione",
+                                  Colors.grey));
+                          positionFromGet = null;
+                          setState(() {
+                            fabShown = true;
+                          });
+                        }
+                        await _prepareForBottomSheet(
+                            positionFromGet, coordinates);
+                        _isButtonTapped = false;
+                      }
+                    },
+                  ),
+                ),
+              ]
+            : [
+                Center(
+                  child: CircularProgressIndicator(),
+                )
+              ],
       ),
       floatingActionButton:
           parkProvider.parked ? buildSpeedDial(context, mapController) : null,

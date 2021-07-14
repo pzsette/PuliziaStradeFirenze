@@ -7,6 +7,7 @@ import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Providers/ParkProvider.dart';
 import 'package:pulizia_strade/Repository/shared_preferences.dart';
 import 'package:pulizia_strade/Utils/NavigationUtils.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 Padding buildSpeedDial(context, GoogleMapController controller) {
   ParkProvider parkProvider = Provider.of<ParkProvider>(context);
@@ -15,7 +16,7 @@ Padding buildSpeedDial(context, GoogleMapController controller) {
       child: SpeedDial(
         icon: Icons.local_parking,
         iconTheme: IconThemeData(color: Colors.white, size: 30),
-        buttonSize: 75.0,
+        buttonSize: SizeConfig.blockSizeHorizontal * 17,
         visible: true,
         direction: SpeedDialDirection.Down,
         switchLabelPosition: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class PositionLabel extends StatelessWidget {
   final PositionInMap position;
@@ -8,7 +9,6 @@ class PositionLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -18,7 +18,7 @@ class PositionLabel extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.black,
-                fontSize: screenWidth / 20,
+                fontSize: SizeConfig.blockSizeVertical * 2.7,
                 fontWeight: FontWeight.w500),
           ),
           if (position.section != 'strada completa' && position.section != null)
@@ -26,7 +26,7 @@ class PositionLabel extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: screenWidth / 25,
+                  fontSize: SizeConfig.blockSizeVertical * 2.3,
                 )),
         ],
       ),

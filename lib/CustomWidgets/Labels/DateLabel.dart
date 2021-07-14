@@ -19,13 +19,13 @@ class DateLabel extends StatelessWidget {
             result["data"] != "indirizzo non trovato")
           Text("Prossima pulizia:",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 3)),
+              style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2.3)),
         (position.section != null &&
                 (result["data"] != "indirizzo non trovato"))
             ? Text(convertDate(result['data']) + " alle " + result['ora'],
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: SizeConfig.blockSizeVertical * 2.3,
+                    fontSize: SizeConfig.blockSizeVertical * 2.5,
                     fontWeight: FontWeight.w500))
             : Text(
                 "Strada non presente nel database di pulizia strade",

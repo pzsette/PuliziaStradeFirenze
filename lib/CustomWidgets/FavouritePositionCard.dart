@@ -65,16 +65,16 @@ class _PositionWidgetState extends State<FavouritePositionCard> {
                       Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: SizeConfig.blockSizeHorizontal * 1.5,
-                              vertical: SizeConfig.blockSizeVertical * 1),
+                              vertical: SizeConfig.blockSizeVertical * 0.5),
                           child: PositionLabel(widget.position)),
                       Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.blockSizeHorizontal * 1,
+                              horizontal: SizeConfig.blockSizeHorizontal * 0.5,
                               vertical: SizeConfig.blockSizeVertical * 1.5),
                           child: DateLabel(widget.position, snapshot.data[0])),
                       Padding(
                           padding: EdgeInsets.symmetric(
-                              vertical: SizeConfig.blockSizeVertical * 1.5),
+                              vertical: SizeConfig.blockSizeVertical * 1),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[

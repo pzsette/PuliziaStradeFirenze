@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pulizia_strade/CustomWidgets/Buttons/CancelButton.dart';
 import 'package:pulizia_strade/CustomWidgets/Labels/DateLabel.dart';
 import 'package:pulizia_strade/CustomWidgets/Labels/PositionLabel.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
@@ -40,21 +41,32 @@ class ParkingCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                        padding:
-                            EdgeInsets.all(SizeConfig.blockSizeVertical * 1),
+                        padding: EdgeInsets.fromLTRB(
+                            SizeConfig.blockSizeVertical * 1.5,
+                            SizeConfig.blockSizeVertical * 1.5,
+                            SizeConfig.blockSizeVertical * 1.5,
+                            SizeConfig.blockSizeVertical * 1),
                         child: Text(
-                          "Hai parcheggia il tuo veicolo in :",
+                          "Hai parcheggiato \nil tuo veicolo in: ",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: SizeConfig.blockSizeVertical * 2.2),
+                              fontSize: SizeConfig.blockSizeVertical * 2.3),
                         )),
                     Padding(
                         padding:
-                            EdgeInsets.all(SizeConfig.blockSizeHorizontal * 3),
+                            EdgeInsets.all(SizeConfig.blockSizeHorizontal * 1),
                         child: PositionLabel(position)),
                     Padding(
-                        padding: EdgeInsets.all(
-                            SizeConfig.blockSizeHorizontal * 1.5),
+                        padding: EdgeInsets.fromLTRB(
+                            SizeConfig.blockSizeHorizontal * 4,
+                            SizeConfig.blockSizeVertical * 1,
+                            SizeConfig.blockSizeHorizontal * 4,
+                            SizeConfig.blockSizeVertical * 0),
                         child: DateLabel(position, snapshot.data[0])),
+                    Padding(
+                        padding:
+                            EdgeInsets.all(SizeConfig.blockSizeVertical * 1),
+                        child: CancelButton())
                   ],
                 ),
               );

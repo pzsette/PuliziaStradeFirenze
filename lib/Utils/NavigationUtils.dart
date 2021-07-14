@@ -20,7 +20,6 @@ Future<void> openNavigatorTo(double latitude, double longitude, context) async {
 }
 
 launchUrl(String url) async {
-  //print("Launching:" + url.toString());
   if (await canLaunch(url)) {
     await launch(url);
   } else {
@@ -54,7 +53,6 @@ CupertinoActionSheet directionSheet(
                 ',' +
                 longitude.toString() +
                 '&dirflg=w');
-            print(url);
             Navigator.pop(context);
             launch(url);
           },
@@ -81,7 +79,6 @@ CupertinoActionSheet directionSheet(
                     ',' +
                     longitude.toString() +
                     '&travelmode=walking');
-            print(url);
             Navigator.pop(context);
             launchUrl(url);
           },

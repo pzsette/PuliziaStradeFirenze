@@ -182,7 +182,6 @@ class TermOfService extends StatelessWidget {
               style: linkStyle,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  print("tap");
                   String url = Uri.encodeFull(
                       'https://www.creativecommons.org/licenses/by-sa/3.0/it/legalcode');
                   launchUrl(url);
