@@ -91,16 +91,14 @@ class _SearchScreenState extends State<SearchScreen> {
     try {
       Map response = await dio.getAllStreetsAndTracts(context);
       List<PositionInMap> tmpList = [];
-      print("ELlo");
       for (int i = 0; i < response['strade'].length; i++) {
         String streetName = response['strade'][i][0];
         String section = response['strade'][i][1];
         PositionInMap position =
-            new PositionInMap(streetName, "Florence", section: section);
+            new PositionInMap(streetName, "Florence", section);
         tmpList.add(position);
       }
       setState(() {
-        print("ELOEEL");
         streetList = tmpList;
       });
     } on Exception {

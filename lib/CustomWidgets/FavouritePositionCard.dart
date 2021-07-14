@@ -7,6 +7,7 @@ import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
 import 'package:pulizia_strade/Providers/DataProvider.dart';
 import 'package:pulizia_strade/Repository/favourites_db.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class FavouritePositionCard extends StatefulWidget {
   final PositionInMap position;
@@ -32,7 +33,6 @@ class _PositionWidgetState extends State<FavouritePositionCard> {
   @override
   Widget build(BuildContext context) {
     DataProvider provider = Provider.of<DataProvider>(context, listen: false);
-    double screenWidth = MediaQuery.of(context).size.width;
     return Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         elevation: 10,
@@ -52,7 +52,7 @@ class _PositionWidgetState extends State<FavouritePositionCard> {
               if (snapshot == null ||
                   snapshot.connectionState == ConnectionState.waiting) {
                 result = Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
+                    height: SizeConfig.blockSizeVertical * 20,
                     child: Center(
                         child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
@@ -64,17 +64,17 @@ class _PositionWidgetState extends State<FavouritePositionCard> {
                     children: <Widget>[
                       Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth / 42,
-                              vertical: screenWidth / 42),
+                              horizontal: SizeConfig.blockSizeHorizontal * 1.5,
+                              vertical: SizeConfig.blockSizeVertical * 0.5),
                           child: PositionLabel(widget.position)),
                       Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth / 42,
-                              vertical: screenWidth / 42),
+                              horizontal: SizeConfig.blockSizeHorizontal * 0.5,
+                              vertical: SizeConfig.blockSizeVertical * 1.5),
                           child: DateLabel(widget.position, snapshot.data[0])),
                       Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: screenWidth / 42),
+                          padding: EdgeInsets.symmetric(
+                              vertical: SizeConfig.blockSizeVertical * 1),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
@@ -97,7 +97,7 @@ class _PositionWidgetState extends State<FavouritePositionCard> {
                                       padding: EdgeInsets.all(7),
                                       child: Icon(
                                         Icons.delete,
-                                        size: screenWidth / 13,
+                                        size: SizeConfig.blockSizeVertical * 4,
                                         color: Colors.red,
                                       ))),
                             ],

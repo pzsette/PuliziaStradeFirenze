@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/FireMessaging.dart';
 import 'package:pulizia_strade/Providers/DataProvider.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class FavouriteButton extends StatefulWidget {
   final PositionInMap position;
@@ -26,7 +27,6 @@ class _FavouriteButtonState extends State<FavouriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     DataProvider provider = Provider.of<DataProvider>(context);
     return Container(
       child: ElevatedButton(
@@ -53,7 +53,7 @@ class _FavouriteButtonState extends State<FavouriteButton> {
               padding: EdgeInsets.all(7),
               child: Icon(
                   positionInFavourites ? Icons.favorite : Icons.favorite_border,
-                  size: screenWidth / 14,
+                  size: SizeConfig.blockSizeVertical * 4,
                   color: Colors.red))),
     );
   }

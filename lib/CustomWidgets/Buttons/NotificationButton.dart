@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/FireMessaging.dart';
 import 'package:pulizia_strade/Repository/favourites_db.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class NotificationButton extends StatefulWidget {
   final PositionInMap position;
@@ -18,14 +19,12 @@ class _NotificationButton extends State<NotificationButton> {
 
   @override
   void initState() {
-    print("Initooo" + widget.initNot.toString());
     super.initState();
     notificationOn = widget.initNot;
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(
@@ -34,8 +33,6 @@ class _NotificationButton extends State<NotificationButton> {
           primary: Colors.white,
         ),
         onPressed: () {
-          print("Cambio notifiche");
-          print(!notificationOn);
           DBHelper.instance.updateNot(widget.position, !notificationOn);
           FireMessaging fireMessaging = new FireMessaging();
           if (notificationOn) {
@@ -43,13 +40,11 @@ class _NotificationButton extends State<NotificationButton> {
             fireMessaging.removeFavourites(
                 widget.position.streetName, widget.position.section);
           } else {
-            print("Aggiunto ai preferiti");
             //widget.messaging.subscribeToTopic(address_revisisted + "-" + tract_revisited);
             fireMessaging.addFavourites(
                 widget.position.streetName, widget.position.section);
           }
           setState(() {
-            print("cambio");
             notificationOn = !notificationOn;
           });
         },
@@ -59,7 +54,7 @@ class _NotificationButton extends State<NotificationButton> {
               notificationOn
                   ? Icons.notifications_active
                   : Icons.notifications_off,
-              size: screenWidth / 13,
+              size: SizeConfig.blockSizeVertical * 4,
               color: notificationOn ? Colors.green : Colors.grey,
             )));
   }

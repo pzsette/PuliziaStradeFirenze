@@ -4,6 +4,7 @@ import 'package:pulizia_strade/Screens/Map.dart';
 import 'package:pulizia_strade/Screens/Search.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 import 'Providers/ConnectivityProvider.dart';
 import 'Screens/Favourite.dart';
 import 'Screens/Settings.dart';
@@ -68,6 +69,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: createAppBar(pageToggle),
       body: (pageToggle ? SettingsScreen() : _widgetOptions[_selectedIndex]),

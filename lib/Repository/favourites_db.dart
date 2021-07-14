@@ -88,8 +88,6 @@ class DBHelper {
         whereArgs: [pos.streetName, pos.section]);
   }
 
-  //TO DO: UPDATE WITH STRING SECTION
-
   Future<List<PositionInMap>> getAllFavourites() async {
     // Get a reference to the database.
     Database db = await DBHelper.instance.database;
@@ -101,8 +99,7 @@ class DBHelper {
       String street = i["street"];
       String section = i["section"];
       String city = i["city"];
-      PositionInMap position =
-          new PositionInMap(street, city, section: section);
+      PositionInMap position = new PositionInMap(street, city, section);
       list.add(position);
     }
     return list;
@@ -131,7 +128,6 @@ class DBHelper {
             '${DBHelper.columnStreetName} = ? AND ${DBHelper.columnStreetSection} = ?',
         whereArgs: [pos.streetName, pos.section]);
     int value = res[0]["notification"];
-    print("in db c'è:" + value.toString());
     if (value == 1) {
       return true;
     } else if (value == 0) {

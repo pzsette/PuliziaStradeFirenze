@@ -7,6 +7,7 @@ import 'package:pulizia_strade/CustomWidgets/Labels/PositionLabel.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
 import 'package:pulizia_strade/Repository/favourites_db.dart';
+import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
 class InfoBottomSheet extends StatefulWidget {
   final PositionInMap position;
@@ -25,7 +26,6 @@ class _InfoBottomSheetState extends State<InfoBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return FutureBuilder(
         future: Future.wait([
           widget.dio.getParkingInfoOnPosition(widget.position),
@@ -41,7 +41,7 @@ class _InfoBottomSheetState extends State<InfoBottomSheet> {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   color: Colors.white),
-              height: MediaQuery.of(context).size.height * 0.30,
+              height: SizeConfig.blockSizeVertical * 23,
               child: Center(
                   child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
@@ -60,30 +60,27 @@ class _InfoBottomSheetState extends State<InfoBottomSheet> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                      /*Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.15 + 30,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20)),
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: LocationHelper.getImageFromCoord(
-                                    widget.latitude, widget.longitude))),
-                      ),*/
                       Padding(
                         padding: EdgeInsets.fromLTRB(
-                            0, screenWidth / 21, 0, screenWidth / 42),
+                            0,
+                            SizeConfig.blockSizeVertical * 2,
+                            0,
+                            SizeConfig.blockSizeVertical * 1),
                         child: PositionLabel(widget.position),
                       ),
                       Padding(
                           padding: EdgeInsets.fromLTRB(
-                              0, screenWidth / 42, 0, screenWidth / 42),
+                              0,
+                              SizeConfig.blockSizeVertical * 1,
+                              0,
+                              SizeConfig.blockSizeVertical * 1),
                           child: DateLabel(widget.position, snapshot.data[0])),
                       Padding(
                           padding: EdgeInsets.fromLTRB(
-                              0, screenWidth / 42, 0, screenWidth / 42),
+                              0,
+                              SizeConfig.blockSizeVertical * 1.5,
+                              0,
+                              SizeConfig.blockSizeVertical * 1.5),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [

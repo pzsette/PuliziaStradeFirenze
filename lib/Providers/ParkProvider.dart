@@ -25,6 +25,7 @@ class ParkProvider with ChangeNotifier {
     }
     sharedPrefs.setPark(latitude, longitude);
     sharedPrefs.setParkSteerName(position.streetName);
+    sharedPrefs.setParkCityName(position.city);
     String section = positionFoundInDB ? position.section : "noSection";
     sharedPrefs.setParkStreetSection(section);
     _addMarker(latitude, longitude);

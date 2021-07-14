@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pulizia_strade/CustomWidgets/Buttons/FavouriteButtons.dart';
 import 'package:pulizia_strade/CustomWidgets/Buttons/CancelButton.dart';
 import 'package:pulizia_strade/CustomWidgets/Labels/DateLabel.dart';
 import 'package:pulizia_strade/CustomWidgets/Labels/PositionLabel.dart';
 import 'package:pulizia_strade/Models/PositionInMap.dart';
 import 'package:pulizia_strade/Network/dioNetwork.dart';
-import 'package:pulizia_strade/Repository/favourites_db.dart';
 import 'package:pulizia_strade/Utils/SizeConfig.dart';
 
-class PositionCard extends StatelessWidget {
+class ParkingCard extends StatelessWidget {
   final PositionInMap position;
   final DioNetwork dio = new DioNetwork();
 
-  PositionCard(this.position);
+  ParkingCard(this.position);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,6 @@ class PositionCard extends StatelessWidget {
       child: FutureBuilder(
           future: Future.wait([
             dio.getParkingInfoOnPosition(position),
-            DBHelper.instance.checkIfPositionInFavourite(position)
           ]),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             Widget result;
@@ -44,31 +41,32 @@ class PositionCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            SizeConfig.blockSizeVertical * 1.5,
+                            SizeConfig.blockSizeVertical * 1.5,
+                            SizeConfig.blockSizeVertical * 1.5,
+                            SizeConfig.blockSizeVertical * 1),
+                        child: Text(
+                          "Hai parcheggiato \nil tuo veicolo in: ",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: SizeConfig.blockSizeVertical * 2.3),
+                        )),
+                    Padding(
                         padding:
-                            EdgeInsets.all(SizeConfig.blockSizeHorizontal * 3),
+                            EdgeInsets.all(SizeConfig.blockSizeHorizontal * 1),
                         child: PositionLabel(position)),
                     Padding(
-                        padding: EdgeInsets.all(
-                            SizeConfig.blockSizeHorizontal * 1.5),
+                        padding: EdgeInsets.fromLTRB(
+                            SizeConfig.blockSizeHorizontal * 4,
+                            SizeConfig.blockSizeVertical * 1,
+                            SizeConfig.blockSizeHorizontal * 4,
+                            SizeConfig.blockSizeVertical * 0),
                         child: DateLabel(position, snapshot.data[0])),
-                    Row(
-                      children: [
-                        if (snapshot.data[0]["data"] != "indirizzo non trovato")
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  0,
-                                  SizeConfig.blockSizeVertical * 1.5,
-                                  0,
-                                  SizeConfig.blockSizeHorizontal * 3),
-                              child:
-                                  FavouriteButton(position, snapshot.data[1])),
-                        Padding(
-                            padding: EdgeInsets.all(
-                                SizeConfig.blockSizeVertical * 1),
-                            child: CancelButton())
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    ),
+                    Padding(
+                        padding:
+                            EdgeInsets.all(SizeConfig.blockSizeVertical * 1),
+                        child: CancelButton())
                   ],
                 ),
               );
