@@ -15,7 +15,7 @@ Map page             |  Search page | Favourites page
 <img src="images/map.PNG" height=400/>  | <img src="images/search.PNG" height=400> | <img src="images/favourites.PNG" height=400>
 
 ## Tools
-The main tools and techniques used are:
+The main tools used are:
 - [Flutter](https://flutter.dev): native framework for building iOS and Android apps.
 - [Google Maps API](https://developers.google.com/maps): for embedding a map.
 - [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging): for implementing push notification on iOS and Android.
